@@ -1,0 +1,39 @@
+#!/bin/bash
+#Script para provar variables basicas.
+
+#Control de error 01.
+
+Aux=$( ps -ef | grep $$ )
+echo "Proceso de Memoria: $Aux"
+
+if [ $# = 3 ]
+    then
+   	 echo "La variable \$0 (Ruta del Script): $0"
+   	 echo "La variable \$1 (Parametro 1): $1"
+   	 echo "La variable \$2 (Parametro 2): $2"
+   	 echo "La variable \$3 (Parametro 3): $3"
+   	 echo "La variable \$$ (PID del proceso del Script): $$"
+   	 echo "La variable \$# (Numero de parametros introducidos): $#"
+   	 echo "La variable \$* (Array del valor de los parametros): $*"
+
+#Bucle para revisar todos los valores del array.
+    i=0
+    for elem in $*
+   	 do
+   		 i=$(expr $i + 1)
+   		 echo "Valor del parametro $i: $elem"
+   	 done
+
+#Control de error 02.
+
+    if [ $? = 0 ]
+   	 then
+   		 echo "El Script $0 con numero de proceso $$ A finalizado correctamente"
+   	 else
+   		 echo "El Script $0 con numero de proceso $$ NO a finalizado correctamente"
+    fi
+else
+
+    echo "ERROR, Tienes que introducir $# parametros"
+
+fi
